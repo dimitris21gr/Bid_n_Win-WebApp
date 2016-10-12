@@ -1,0 +1,89 @@
+<div class="col-sm-8 col-sm-offset-2">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" ng-click = "currentTab='search'" href="">Search for auctions</a></li>
+        <li><a data-toggle="tab" ng-click = "currentTab='browse'" href="">Browse by category</a></li>
+    </ul>
+    
+    
+
+    <div class="tab-content">
+        <form ng-show="currentTab==='search'" class="tab-pane fade in active" ng-submit="search()">
+            <div class="row">
+                <h5 class="col-sm-12 text-left">Search auctions using as many of the following filters as you like.</h5>
+                <div class="form-group col-sm-6 text-left">
+                    <label>Keywords:</label>
+                    <input type="text" class="form-control" ng-model="data.keywords">
+                </div>
+                
+                 <div class="form-group col-sm-3 text-left">
+                    <label>Price range:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">from</span>
+                        <input type="text" class="form-control" placeholder="$" ng-model="data.from">
+                    </div>
+                </div>
+            
+                <div class="form-group col-sm-3">
+                    <label style="opacity: 0.0">Price range:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">to</span>
+                        <input type="text" class="form-control" placeholder="$" ng-model="data.to">
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="row">
+                
+                 <div class="form-group col-sm-6 text-left">
+                    <label>Location:</label>
+                    <input type="text" class="form-control" ng-model="data.location">
+                </div>
+               
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-12 text-left">
+                    <label>Selected Categories:</label>
+                    <span ng-repeat="c in categoryPathList">
+                        /&nbsp;<a style="color:rgb(251, 130, 13)" href="" ng-click="findSubCat(c.name, c.id)">{{c.name}}</a>&nbsp;
+                    </span>
+                    <br>
+                    <br>
+                    <ul class="fa-ul" ng-repeat="x in categoryList">
+                        <li><i class="fa-li fa fa-plus" style="color:rgb(251, 130, 13)"></i><a style="color:black" href="" ng-click="findSubCat(x.name, x.id)">{{x.name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="text-danger" ng-show="numberError">Price range values must be numeric</span>
+                    <button type="submit" class="btn btn-primary" style="float:right">Search</button>
+                </div>
+            </div>
+        </form>
+        
+        <div ng-show="currentTab==='browse'" class="tab-pane fade in active">
+            <div class="row text-left">
+            <h5 class="col-sm-12">View auctions that belong to specific categories.</h5>
+            <div class="col-sm-12">
+                <label>Selected Categories:</label>
+                <span ng-repeat="c in categoryPathList">
+                    /&nbsp;<a style="color:rgb(251, 130, 13)" href="" ng-click="findSubCat(c.name, c.id)">{{c.name}}</a>&nbsp;
+                </span>
+                <br>
+                <br>
+                <ul class="fa-ul" ng-repeat="x in categoryList">
+                    <li><i class="fa-li fa fa-plus" style="color:rgb(251, 130, 13)"></i><a style="color:black" href="" ng-click="findSubCat(x.name, x.id)">{{x.name}}</a></li>
+                </ul>
+            </div></div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" type="button" ng-click="browse()">Go</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>

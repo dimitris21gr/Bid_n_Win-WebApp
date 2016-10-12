@@ -1,0 +1,138 @@
+<div class="row" ng-hide="registerComplete">
+    <div class="col-sm-8 col-sm-offset-2 text-left">
+        <legend ng-show='option==="Create"'>Create a new auction</legend>
+        <legend ng-show='option==="Save"'>Edit your auction</legend>
+		<h5>Fields marked with an <i style="color:rgb(251, 130, 13)">*</i> asterisk are required.</h5>
+    </div>
+</div>
+<form role="form" ng-submit="submitAuction()">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-2">
+            <div class="form-group">
+                <label for="name"><i style="color:rgb(251, 130, 13)">*</i> Title:</label>
+                <input type="text" class="form-control" ng-model="auction.name">
+            </div>
+			<div class="form-group col-sm-6">
+                <label for="firstBid"><i style="color:rgb(251, 130, 13)">*</i> First Bid:</label>
+                <input type="text" class="form-control" ng-model="auction.first_bid" placeholder="$">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="buyPrice">Buy Price:</label>
+				<input type="text" class="form-control" ng-model="buy_price.amount" placeholder="$">
+            </div>
+            <div class="form-group">
+                <label for="firstBid"><i style="color:rgb(251, 130, 13)">*</i> Country:</label>
+                <input type="text" class="form-control" ng-model="auction.country">
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div>
+				<label for="date"><i style="color:rgb(251, 130, 13)">*</i> Ending date:</label><br>
+				<div class="form-group col-sm-4">
+					<select class="form-control" ng-model="tempDate.selectEYear" ng-options="n for n in [] | range:2016:2019"><option value="" disabled selected> Year</option></select>
+				</div>
+				<div class="form-group col-sm-4">
+					<select class="form-control" ng-model="tempDate.selectEMonth" ng-options="x.month for x in months" ng-value="x.number"><option value="" disabled selected> Month</option></select>
+				</div>
+				<div class="form-group col-sm-4">
+					<select class="form-control" ng-model="tempDate.selectEDay" ng-options="n for n in [] | range:1:32"><option value="" disabled selected> Day</option></select>
+				</div>
+				<label for="date"><i style="color:rgb(251, 130, 13)">*</i> Ending time:</label><br>
+				<div class="form-group col-sm-4">
+					<select class="form-control" ng-model="tempDate.selectEHour" ng-options="n for n in [] | range:0:24"><option value="" disabled selected> Hour</option></select>
+				</div>
+				<div class="form-group col-sm-4">
+					<select class="form-control" ng-model="tempDate.selectEMinute" ng-options="n for n in [] | range:0:60"><option value="" disabled selected> Min</option></select>
+				</div>
+				<div class="form-group col-sm-4">
+					<select class="form-control" ng-model="tempDate.selectESecond" ng-options="n for n in [] | range:0:60"><option value="" disabled selected> Sec</option></select>
+				</div>
+                
+				<div class="form-group col-sm-12">
+                    <label><i style="color:rgb(251, 130, 13)">*</i> Location:</label>
+					<input type="text" class="form-control" ng-model="auction.location">
+				</div>
+            </div>
+        </div>
+    </div>
+	<br>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-2 text-left">
+            
+            <div class="form-group text-center">
+                <label>Upload images:</label>
+                <div class="row text-center">
+                    <div class="col-sm-6" ng-hide="images.imgA ===''">
+                        <div class="img-thumbnail">
+                            <img ng-src={{images.imgA}} class="img-responsive center-block" style="max-height: 100px;">
+                            <a class="close-btn" href="" ng-click="clearImg('imgA')"><i class="fa fa-times" style="padding: 2px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-show="images.imgA ===''">
+                        <div class="img-thumbnail">
+                            <label for="imgA" style="cursor:pointer">
+                                <i class="fa fa-plus fa-10x" style="color: rgb(251, 130, 13); padding: 42px;"></i></a>
+                            </label>
+                            <input type="file" id="imgA" style="display: none;" accept="image/*" custom-on-change="loadImgA"/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6" ng-hide="images.imgB ===''">
+                        <div class="img-thumbnail">
+                            <img ng-src={{images.imgB}} class="img-responsive center-block" style="max-height: 100px;">
+                            <a class="close-btn" href="" ng-click="clearImg('imgB')"><i class="fa fa-times" style="padding: 2px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-show="images.imgB ===''">
+                        <div class="img-thumbnail">
+                            <label for="imgB" style="cursor:pointer">
+                                <i class="fa fa-plus fa-10x" style="color: rgb(251, 130, 13); padding: 42px;"></i></a>
+                            </label>
+                            <input type="file" id="imgB" style="display: none;" accept="image/*" custom-on-change="loadImgB"/>
+                        </div>
+                    </div>
+                </div>
+                <h5>You can upload up to <b>2</b> images.</h5>
+            </div>
+            
+        </div>
+		<div class="col-sm-5">
+			<label>Map Location:</label>
+            <ng-map zoom="{{zoomVal}}" center="41, 5.6" on-rightclick="mapClick()">
+                <marker visible="false"></marker>
+            </ng-map>
+			<p>Right mouse click to place the marker to the location of the item. (optional)</p>
+		</div>
+    </div>
+    <br>
+    <div class="row text-left">
+        <div class="col-sm-8 col-sm-offset-2">
+             <div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Description:</label>
+				<textarea type="text" class="form-control" rows="5" ng-model="auction.description"></textarea>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row text-left">
+        <div class="col-sm-8 col-sm-offset-2">
+            <label for="email"><i style="color:rgb(251, 130, 13)">*</i> Select Categories:</label>
+            <span ng-repeat="c in categoryPathList">
+                /&nbsp;<a style="color:rgb(251, 130, 13)" href="" ng-click="findSubCat(c.name, c.id)">{{c.name}}</a>&nbsp;
+            </span>
+            <br>
+            <br>
+            <ul class="fa-ul" ng-repeat="x in categoryList">
+                <li><i class="fa-li fa fa-plus" style="color:rgb(251, 130, 13)"></i><a style="color:black" href="" ng-click="findSubCat(x.name, x.id)">{{x.name}}</a></li>
+            </ul>
+        </div>
+    </div>
+	<div class="row">
+        <button type="submit" class="btn btn-primary">{{option}} auction</button>
+    </div>
+	<div class="text-danger" ng-show="basicFieldsError">Please fill all the required fields of the form</div>
+	<div class="text-danger" ng-show="NumberError">Please give numeric value to the first bid field.</div>
+	<div class="text-danger" ng-show="NumberBPError">Please give numeric value to the buy price field.</div>
+	<div class="text-danger" ng-show="futureDateError">The end date must be a future date!</div>
+    <div class="text-danger" ng-show="categoryError">Please select all categories.</div>
+</form>

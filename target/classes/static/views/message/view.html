@@ -1,0 +1,12 @@
+<div class="list-group-item message_action" style="background-color: rgb(163, 159, 153)">
+    <a ng-click="reply()" ng-show="message.type === 'inbox'"><i class="fa fa-reply"></i> Reply</a>
+    <a ng-click="delete()"><i class="fa fa-trash"></i> Delete</a>
+</div>
+<div>
+    <h4 style="text-align: left" ng-show="message.type === 'inbox'"><b>From:</b> {{message.from}}</h4>
+    <h4 style="text-align: left" ng-show="message.type === 'sent'"><b>To:</b> {{message.to}}</h4>
+
+    <h4 style="text-align: left"><b>Title:</b> {{message.title}}</h4>
+
+    <p style="text-align: justify">{{message.text}}</p>
+</div>

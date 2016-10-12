@@ -1,0 +1,25 @@
+<div class="row"></div>
+    <div class="col-sm-8 col-sm-offset-2">
+        <legend class="text-left">Export to XML</legend>
+        <div class="row">
+            <div class="col-sm-12 text-left">
+                <label>Selected Categories:</label>
+                <span ng-repeat="c in categoryPathList">
+                    /&nbsp;<a style="color:rgb(251, 130, 13)" href="" ng-click="findSubCat(c.name, c.id)">{{c.name}}</a>&nbsp;
+                </span>
+                <br>
+                <br>
+                <ul class="fa-ul" ng-repeat="x in categoryList">
+                    <li><i class="fa-li fa fa-plus" style="color:rgb(251, 130, 13)"></i><a style="color:black" href="" ng-click="findSubCat(x.name, x.id)">{{x.name}}</a></li>
+                </ul>
+            </div>
+            <div class="row text-left">
+                <div class="col-sm-12">
+                    <button ng-hide="XMLcreated" ng-click="getXML()" class="btn btn-primary pull-right">Create XML</button>
+                    <a ng-show="XMLcreated" ng-href="{{xmlFile}}" download><button ng-click="XMLcreated=false" class="btn btn-primary pull-right">Download XML</button></a>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

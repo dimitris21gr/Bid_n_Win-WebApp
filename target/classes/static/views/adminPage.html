@@ -1,0 +1,20 @@
+<table ng-show="session.isAdmin" class="table table-hover">
+    <thead>
+        <tr>
+            <th style="text-align: center">Username</th>
+            <th style="text-align: center">Email</th>
+            <th style="text-align: center">Name</th>
+            <th style="text-align: center">Surname</th>
+            <th style="text-align: center">Account actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in userList">
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.surname}}</td>
+            <td><button class="btn btn-primary btn-sm" ng-click="viewProfile(user.id)">Edit Profile</button></td>
+        </tr>
+    </tbody>
+</table>

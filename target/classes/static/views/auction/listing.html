@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2 text-left">
+        <legend>Results</legend>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        
+        <div class="row">
+            <div class="col-sm-12 text-left" style="margin-bottom: 10px; margin-left: 10px;">
+                <i><b>{{matches}}</b> matches found</i>
+            </div>
+        </div>
+        
+        <div class="row" ng-repeat="auction in results" style="border-style:solid; border-color: rgb(163, 159, 153); border-radius: 5px; margin: 10px;">
+            
+            <div class="col-sm-12 text-left">
+                <h5><b>Categories:</b> <span ng-repeat="cat in auction.categories">/ {{cat.name}} </span></h5>
+            </div>
+            
+            <div class="col-sm-3">
+                <img ng-src="{{auction.img}}" style="max-height: 100px;" alt="auction_image" class="img-responsive center-block">
+            </div>
+        
+            <div class="col-sm-9">
+                <div class="row">
+                    <h5 style= "font-size: 150%"><a ng-click="auctionPage(auction.id)" href="" style= "color: rgb(251, 130, 13)">{{auction.name}}</a></h5>
+                </div>
+                <div class="row">
+					<div class="col-sm-5 text-left">
+                        <h5><b>Seller:</b> <a href="" ng-click="sellerProfile(auction.seller_id)" style= "color: rgb(251, 130, 13)">{{auction.seller_username}}</a></h5>
+						<h5><b>Location:</b> {{auction.location}}</h5>
+                    </div>
+                    <div class="col-sm-3 text-left">
+						<h5><b>Rating:</b> {{auction.rating}}</h5>
+                        <h5 ng-show="auction.status"><b>Status:</b> <span style= "color: rgb(251, 130, 13)">active</span></h5>
+                        <h5 ng-hide="auction.status"><b>Status:</b> <span>inactive</span></h5>
+                    </div>
+                    <div class="col-sm-4 text-left">
+                        <h5 style= "font-size: 120%" ng-hide="auction.buy_price == 0"><b>Buy price:</b> {{auction.buy_price}}$</h5>
+                        <h5 style= "font-size: 120%; opacity: 0.0;" ng-show="auction.buy_price == 0">BP</h5>
+                        <h5 style= "font-size: 120%"><b>Current bid:</b> {{auction.currently}}$</h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    
+    </div>
+</div>
+
+
+<div class="row" style="margin: 10px">
+    <div class="col-sm-8 col-sm-offset-2">
+        <ul ng-repeat="n in pageNumbers" class="my-pagination">
+            <li ng-show="n == currentPage"><a class="active" href="" ng-click="getPage(n)">{{n}}</a></li>
+            <li ng-hide="n == currentPage"><a href="" ng-click="getPage(n)">{{n}}</a></li>
+        </ul>
+    </div>
+</div>

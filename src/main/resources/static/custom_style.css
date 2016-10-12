@@ -1,0 +1,218 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar, .navbar-inverse {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: rgb(163, 159, 153);
+    border-color: transparent;
+    color: black;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    outline: rgb(251, 130, 13) !important;
+    color: black    !important;
+    background-color: rgb(251, 130, 13) !important;
+    border-radius: 5px  !important;
+    cursor: pointer !important;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+    color: #fff;
+    cursor: pointer    !important;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+    color: black;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: rgb(251, 130, 13) !important;
+}
+
+.panel-default {
+    border-radius: 10px !important;
+    background-color: white !important;
+    margin-bottom: 26px !important;
+    margin-top: 0px !important;
+}
+
+#mainPage {
+    background-color: #E1E1E1;
+}
+
+.navbar-brand {
+    padding: 10px !important;
+}
+
+/*HighLight current tab*/
+.highlight,
+.nav.navbar-nav li a:focus {
+    color: black;
+    background: rgb(251, 130, 13);
+    border-radius: 5px;
+ }
+
+.nav.navbar-nav li a
+{
+    color: black;
+}
+
+/*Set logo image size*/
+.edit_img {
+    max-height: 180px;
+    max-width: auto;
+}
+
+.message_action a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.message_action a:hover {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.badge {
+    background-color: rgb(163, 159, 153) !important;
+}
+
+.list-group-item>.badge {
+    float: none;
+}
+
+.clickable-row td {
+    cursor: pointer !important;
+}
+
+/*Set a page's element margin*/
+.element_margin {
+    margin: 20px;
+}
+
+/*Override bootstrap's primary button color */
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-primary:focus {
+    background-color: rgb(251, 130, 13)   !important;
+    border-color: rgb(251, 130, 13)       !important;
+    outline: none                         !important;
+}
+
+.btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:visited, .btn-danger:focus {
+    border-color: transparent             !important;
+    outline: none                         !important;
+}
+
+/*Override bootstrap's form colors and behavior*/
+.form-control:focus {
+    border-color: rgb(251, 130, 13);
+    box-shadow: none;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+}
+
+.dropdown:hover {
+    cursor: hand    !important;
+}
+
+/* Set background color, text color and some padding */
+footer {
+    border-radius: 0;
+    background-color: rgb(163, 159, 153);
+    color: black;
+    padding: 15px;
+}
+
+footer a {
+    color: black;
+}
+
+footer a:hover, footer a:focus {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    background-color: rgb(163, 159, 153);
+    color: black;
+}
+
+.nav-tabs>li>a {
+    color: rgb(251, 130, 13);
+}
+
+.bid-list {
+    margin: 0px;
+    padding: 0px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(163, 159, 153);
+    border-radius: 5px;
+}
+
+ul.my-pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.my-pagination li {display: inline;}
+
+ul.my-pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid rgb(163, 159, 153);
+}
+
+ul.my-pagination li a.active {
+    background-color: rgb(251, 130, 13);
+    color: white;
+    border: 1px solid rgb(251, 130, 13);
+}
+
+ul.my-pagination li a:hover:not(.active) {background-color: #ddd;}
+
+.img-thumbnail {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 0px;
+    border: 3px solid rgb(163, 159, 153);
+    border-radius: 4px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: 20%;
+    color: white;
+    display: block;
+    background: rgb(163, 159, 153);
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .row.content {height:auto;}
+}
+
+centered {
+	text-align: center;
+}

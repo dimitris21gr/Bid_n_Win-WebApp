@@ -1,0 +1,83 @@
+<div class="row" ng-hide="registerComplete">
+    <div class="col-sm-8 col-sm-offset-2 text-left">
+        <legend>Create your account</legend>
+    </div>
+</div>
+<form role="form" ng-submit="tryRegister()" ng-hide="registerComplete">
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-2">
+            <div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Username:</label>
+                <input type="text" class="form-control" ng-model="user.username">
+            </div>
+            <div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Password:</label>
+                <input type="password" class="form-control" ng-model="user.password">
+            </div>
+            <div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Verify password:</label>
+                <input type="password" class="form-control" ng-model="prop.verifyPassword">
+			</div>
+			<div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Email:</label>
+                <input type="text" class="form-control" ng-model="user.email">
+            </div>
+			<div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Verify email:</label>
+                <input type="text" class="form-control" ng-model="prop.verifyEmail">
+            </div>
+			<div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Name:</label>
+                <input type="text" class="form-control" ng-model="user.name">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Surname:</label>
+                <input type="text" class="form-control" ng-model="user.surname">
+            </div>
+            <div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Phone number:</label>
+                <input type="text" class="form-control" ng-model="user.telephone">
+            </div>
+            <div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Address:</label>
+                <input type="text" class="form-control" ng-model="user.address">
+            </div>
+			<div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Location:</label>
+                <input type="text" class="form-control" ng-model="user.location">
+            </div>
+            <div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Country:</label>
+                <input type="text" class="form-control" ng-model="user.country">
+            </div>
+            <div class="form-group">
+                <label><i style="color:rgb(251, 130, 13)">*</i> Tax Registration Number:</label>
+                <input type="text" class="form-control" ng-model="user.trn">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+		<div class="text" ng-hide="basicFieldsError"><i style="color:rgb(251, 130, 13)">*</i> Please fill all the required fields of the form.</div>
+		<div class="text-danger" ng-show="basicFieldsError"><i style="color:rgb(251, 130, 13)">*</i> Please fill all the required fields of the form</div>
+        <div class="checkbox">
+            <label><input type="checkbox" ng-model="prop.accept"> I accept the <a href="#">terms of use</a>.</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+	<div class="text-danger" ng-show="passwordError">Please give a valid password!</div>
+	<div class="text-danger" ng-show="missmatchPassError">Passwords don't match!</div>
+	<div class="text-danger" ng-show="missmatchEmailError">Email addresses don't match!</div>
+	<div class="text-danger" ng-show="userExists">This username is already in use!</div>
+    <div class="text-danger" ng-show="emailExists">This email is already in use!</div>
+    <div class="text-danger" ng-show="acceptTermsError">Please accept the terms!</div>
+	<div class="text-danger" ng-show="databaseError">An error occured in the database!</div>
+</form>
+<div class="col-sm-8 col-sm-offset-2" ng-show="registerComplete">
+    <div class="row">
+        <p>Your account has been created successfully. <br>Please wait until the admin activate your account.</p>
+		<img class="edit_img" src="./img/tick.png" alt="tick"></img>
+    </div>
+</div>
+

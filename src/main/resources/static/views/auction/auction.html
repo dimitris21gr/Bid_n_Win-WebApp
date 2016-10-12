@@ -1,0 +1,122 @@
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<div class=" panel panel-default">
+			<div class="panel-heading">
+				<b>{{auction.name}}</b>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row text-left">
+    <div class="col-sm-8 col-sm-offset-2">
+        <span ng-repeat="c in auction.categories">
+                /&nbsp;<a style="color:rgb(251, 130, 13)" href="">{{c.name}}</a>&nbsp;
+        </span>
+    </div>
+</div>
+<br>
+<div class="row" ng-init="showImageA=true">
+	<div class="col-sm-4 col-sm-offset-2">
+		<img ng-show="showImageA" ng-src="{{imgA}}" alt="auction photo" class="img-responsive">
+		<img ng-hide="showImageA" ng-src="{{imgB}}" alt="auction photo" class="img-responsive">
+        <br>
+		<div class="col-sm-3 col-sm-offset-3" ng-hide='imgB===""'>
+			<img ng-src="{{imgA}}" class="img-responsive bid-list" alt="auction imgA" style="cursor: pointer;" ng-click="showImageA=true">
+		</div>
+		<div class="col-sm-3" ng-hide='imgB===""'>
+			<img ng-src="{{imgB}}" class="img-responsive bid-list" alt="auction imgB" style="cursor: pointer;" ng-click="showImageA=false">
+		</div>
+	</div>
+    <div class="col-sm-3 col-sm-offset-1">
+        <span ng-show="auction.buy_price != 0" class="text-left">
+            <legend class="text-left">Buy price:</legend>
+            <h4>Pay <b style="color: rgb(251, 130, 13)">{{auction.buy_price}}$</b> to buy this item now!</h4>
+            <span ng-show="session.loggedIn">
+                <button ng-hide="hasEnded || !hasStarted" class="btn btn-primary" type="button" ng-click="buyNow()">Buy now</button>
+                <button ng-show="hasEnded || !hasStarted" class="btn btn-primary" type="button" disabled="disabled">Buy now</button>
+            </span>
+        </span>
+        <legend class="text-left">Current bid:</legend>
+        <a ng-click="viewBids()" class="pull-right" style="color: rgb(251, 130, 13); text-decoration: none; cursor:pointer;">
+            View bids history <i class="fa fa-history"></i>
+        </a>
+        <br>
+        <div class="bid-list">
+            <ul style="list-style-type: none; margin: 0px; padding: 0px;">
+                <li ng-hide="noBid"><b>{{currentBid.amount}}$</b> by <a href="" ng-click="bidderProfile(currentBid.bidder_id)" style="color: rgb(251, 130, 13)">{{currentBid.bidder_username}}</a> - {{currentBid.bid_time}}</li>
+				<li ng-show="noBid"><b>{{auction.first_bid}}$</b> set by creator as initial bid</li>
+            </ul>
+        </div>
+        <br>
+        <div class="input-group col-sm-7" ng-show="session.loggedIn">
+            <input ng-hide="hasEnded || !hasStarted || bidConfirmMessage" type="text" class="form-control" placeholder="$" ng-model="bidAmount">
+            <input ng-show="hasEnded || !hasStarted" type="text" class="form-control" placeholder="$" disabled>
+            <span class="input-group-btn" ng-hide="bidConfirmMessage">
+                <button ng-hide="hasEnded || !hasStarted" class="btn btn-primary" type="button" ng-click="bid()">Bid</button>
+                <button ng-show="hasEnded || !hasStarted" class="btn btn-primary" type="button" disabled="disabled">Bid</button>
+            </span>
+        </div>
+        <div ng-show="bidConfirmMessage">
+            <h4>Are you sure that you want make a bid of {{bidAmount}}$ for this auction?</h4>
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" ng-click="confirmBid()">Yes</button>
+                <button class="btn btn-danger" type="button" ng-click="cancelBid()">No</button>
+            </span>
+        </div>
+        <br>
+        <b ng-show="hasEnded">This auction is over.</b>
+        <span class="text-danger" ng-hide='bidMsg===""'>{{bidMsg}}</span>
+    </div>
+</div>
+
+<br>
+<div class="row text-left">
+    <div class="col-sm-8 col-sm-offset-2">
+        <h4 class="text-danger" ng-hide="hasStarted">This auction has not started yet.</h4>
+        <h4>By <a href="" ng-click="creatorProfile()" style="color: rgb(251, 130, 13)">{{auction.creator}}</a><span ng-show="hasStarted">, on {{startDate}} at {{startTime}}</span></h4>
+        <h4 ng-show="!hasEnded && hasStarted">{{countDown}}</h4>
+    </div>
+</div>
+
+<div class="row text-left" ng-show="auction.user_id == session.id">
+    <br>
+    <div class="col-sm-8 col-sm-offset-2">
+        <button ng-show="!hasStarted" ng-click="begin()" class="btn btn-primary" type="button"><i class="fa fa-play"></i> Begin</button>
+        <button ng-show="noBid" ng-click="edit()" class="btn btn-primary" type="button"><i class="fa fa-pencil"></i> Edit</button>
+        <button ng-show="noBid" ng-click="delete()" class="btn btn-primary" type="button"><i class="fa fa-trash"></i> Delete</button>
+    </div>
+</div>
+
+<div class="row text-left">
+    <div class="col-sm-8 col-sm-offset-2">
+        <h3>Item information</h3>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" ng-click = "currentTab='desc'" href="">Description</a></li>
+            <li><a data-toggle="tab" ng-click = "currentTab='location'" href="">Location</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div ng-if="currentTab==='desc'" class="tab-pane fade in active">
+                <br>
+                <p>{{auction.description}}</p>
+            </div>
+            <div ng-if="currentTab==='location'" class="tab-pane fade in active">
+                <br>
+                <div class="row">
+					<div class="col-sm-5">
+						<ul style="list-style:none; padding:0; margin:0">
+							<li style="margin:10px"><b>Location:</b> {{auction.location}}</li>
+							<li style="margin:10px"><b>Country:</b> {{auction.country}}</li>
+						</ul>
+					</div>
+                    <div class="col-sm-7" ng-if="auction.latitude!=='0' && auction.longitude!=='0'">
+                        <ng-map center="{{coord}}" zoom="16">
+                            <marker position="{{coord}}" centered="true"></marker>
+                        </ng-map>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<nav class="navbar navbar-inverse">
+    <div class="col-sm-10 col-sm-offset-1">
+      <div class="container-fluid">   
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+           <img class="navbar-brand" src="./img/navlogo.png" alt="navlogo">
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a ui-sref-active="highlight" ui-sref="app.welcome"><i class="fa fa-home"></i> Home</a></li>
+            <li><a ui-sref-active="highlight" ui-sref="app.search"><i class="fa fa-search"></i> Advanced Search</a></li>
+            <li ng-show="session.loggedIn"><a ui-sref="app.auction.manage" ui-sref-active="highlight" ><i class="fa fa-wrench"></i> My Auctions</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" ng-hide="session.loggedIn">
+            <li><a ui-sref-active="highlight" ui-sref="app.login"><i class="fa fa-sign-in"></i> Login</a></li>
+            <li><a ui-sref-active="highlight" ui-sref="app.register"><i class="fa fa-user-plus"></i> Register</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" ng-show="session.loggedIn">
+            <li class="dropdown"><a data-toggle="dropdown">Welcome, {{session.username}} <i ng-show="newMsg > 0" class="fa fa-exclamation-circle fa-lg" style="color: white"></i> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+					<li ng-show="session.isAdmin"><a ui-sref="app.adminPage"><i class="fa fa-cogs"></i> User Management</a></li>
+                    <li ng-show="session.isAdmin"><a ui-sref="app.adminPage2"><i class="fa fa-download"></i> Export Auctions</a></li>
+                    <li><a ui-sref="app.profile"><i class="fa fa-user"></i> Profile</a></li>
+                    <li><a ui-sref="app.message.inbox"><i class="fa fa-envelope"></i> Private Messages <span class="badge">{{newMsg}}</span></a></li>
+                   <li><a ui-sref="app.logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                </ul>
+            </li>       
+          </ul>
+        </div>
+      </div>
+    </div>
+</nav>

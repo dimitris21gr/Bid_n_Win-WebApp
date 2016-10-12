@@ -1,0 +1,19 @@
+<div class="list-group-item message_action" style="background-color: rgb(163, 159, 153)">
+    <a ng-click="sendMessage()"><i class="fa fa-reply"></i> Send</a>
+    <a ng-click="eraseText()"><i class="fa fa-eraser"></i> Clear</a>
+</div>
+<div class="form-group text-left" style="margin-top: 20px">
+    <label>To:</label>
+    <input type="text" class="form-control" ng-model="compose.username" placeholder="username">
+</div>
+<div class="form-group text-left">
+    <label>Title:</label>
+    <input type="text" class="form-control" ng-model="compose.title">
+</div>
+<div class="form-group text-left">
+    <label>Message:</label>
+    <textarea class="form-control" rows="5" ng-model="compose.text"></textarea>
+</div>
+<div class="text-danger" ng-show="errors.usernameError">Invalid username!</div>
+<div class="text-danger" ng-show="errors.titleError">Message title cannot be empty!</div>
+<div class="text-danger" ng-show="errors.textError">Message text cannot be empty!</div>

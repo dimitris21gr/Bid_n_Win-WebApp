@@ -1,0 +1,16 @@
+<form class="col-sm-4 col-sm-offset-4" role="form" ng-submit="tryLogin()">
+    <div class="form-group">
+        <label for="email">Username:</label>
+        <input type="text" class="form-control" id="username" ng-model="user.username">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" ng-model="user.password">
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" ng-model="user.remember"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Log in</button>
+    <div class="text-danger" ng-show="error">Invalid username or password!</div>
+    <div class="text-danger" ng-show="activationError">Your account is not activated by the administrator yet.<br>Please try again later.</div>
+</form>

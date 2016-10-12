@@ -1,0 +1,23 @@
+<div class="list-group-item message_action" style="background-color: rgb(163, 159, 153)">    
+    <a ng-click="deleteSelected()"><i class="fa fa-trash"></i> Delete</a>
+    <a ng-click="selectAll()"><i class="fa fa-check-square"></i> Select all</a>
+    <a ng-click="deselectAll()"><i class="fa fa-square-o"></i> Deselect all</a>
+</div>
+<table class="table table-hover text-left clickable-row" style="margin-top: 20px">
+    <thead>
+        <tr>
+            <th></th>
+            <th>To</th>
+            <th>Title</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="message in sent">
+            <td><input type="checkbox" ng-model="message.selected"></td>
+            <td ng-click="viewMessage(message.id)">{{message.to}}</td>
+            <td ng-click="viewMessage(message.id)">{{message.title}}</td>
+            <td ng-click="viewMessage(message.id)">{{message.date}}</td>
+        </tr>
+    </tbody>
+</table>

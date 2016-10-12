@@ -1,0 +1,28 @@
+<div class="list-group-item message_action" style="background-color: rgb(163, 159, 153)">
+    <a ng-click="deleteSelected()"><i class="fa fa-trash"></i> Delete</a>
+    <a ng-click="markRead()"><i class="fa fa-bookmark-o"></i> Mark as read</a>
+    <a ng-click="markUnRead()"><i class="fa fa-bookmark"></i> Mark as unread</a>
+    <a ng-click="selectAll()"><i class="fa fa-check-square"></i> Select all</a>
+    <a ng-click="deselectAll()"><i class="fa fa-square-o"></i> Deselect all</a>
+</div>
+<table class="table table-hover text-left clickable-row" style="margin-top: 20px">
+    <thead>
+        <tr>
+            <th></th>
+            <th>From</th>
+            <th>Title</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="message in inbox">
+            <td><input type="checkbox" ng-model="message.selected"></td>
+            <td ng-show="message.read" ng-click="viewMessage(message.id)">{{message.from}}</td>
+            <td ng-show="message.read" ng-click="viewMessage(message.id)">{{message.title}}</td>
+            <td ng-show="message.read" ng-click="viewMessage(message.id)">{{message.date}}</td>
+            <td ng-hide="message.read" ng-click="viewMessage(message.id)"><b>{{message.from}}</b></td>
+            <td ng-hide="message.read" ng-click="viewMessage(message.id)"><b>{{message.title}}</b></td>
+            <td ng-hide="message.read" ng-click="viewMessage(message.id)"><b>{{message.date}}</b></td>
+        </tr>
+    </tbody>
+</table>

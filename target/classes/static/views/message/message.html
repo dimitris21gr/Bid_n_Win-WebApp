@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2 text-left">
+        <legend>My messages</legend>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2 col-sm-offset-2">
+        <button class="btn btn-primary" ui-sref="app.message.compose"><i class="fa fa-pencil"></i> Write new message</button>
+         <div class="list-group" style="margin-top: 20px">
+            <a class="list-group-item" ui-sref="app.message.inbox"><i class="fa fa-folder"></i> Inbox <span class="badge text-center">{{inboxCount}}</span></a>
+            <a class="list-group-item" ui-sref="app.message.sent"><i class="fa fa-folder"></i> Sent <span class="badge">{{sentCount}}</span></a>
+        </div>
+    </div>
+    <div class="col-sm-6" ui-view></div>
+</div>

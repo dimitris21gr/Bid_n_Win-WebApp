@@ -1,0 +1,36 @@
+<div class="col-sm-8 col-sm-offset-2">
+	<div class="row">
+		<div class=" panel panel-default">
+			<div class="panel-heading">
+				<b>User: {{user.username}} - Profile information</b>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="panel-body">
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-2">
+			<div class="list-group" style="text-align:left">
+				<div class="list-group-item"><b>Name: </b>{{user.name}}</div>
+				<div class="list-group-item"><b>Surname: </b>{{user.surname}}</div>
+				<div class="list-group-item"><b>Email: </b>{{user.email}}</div>
+				<div class="list-group-item"><b>Address: </b>{{user.address}}</div>
+				<div class="list-group-item"><b>Country: </b>{{user.country}}</div>
+				<div class="list-group-item"><b>Phone Number: </b>{{user.telephone}}</div>
+			</div>
+		</div>
+		<div class="col-sm-2 col-sm-offset-1">
+			<img ng-src="{{user.avatar}}" alt="profile_photo" class="img-responsive"></img>
+            <label for="imgA" style="display: inline-block; cursor: pointer; float: left; font-weight: normal; color: rgb(251, 130, 13); margin-top: 5px">
+                Change avatar
+            </label>
+            <input id="imgA" type="file" accept="image/*" style="display: none;" custom-on-change="loadImgA"/><br>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<button class="btn btn-primary" ui-sref="app.editprofile" ng-show="session.id == user_id">Edit profile</button>
+	<button class="btn btn-primary" ng-hide="session.id == user_id" ng-click="sendMsg()">Send message</button>
+</div>
+
+

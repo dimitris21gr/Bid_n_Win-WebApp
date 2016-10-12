@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <img class="edit_img" src="./img/logo.png" alt="LOGO">
+    </div>
+</div>
+<div class="row element_margin">
+    <div class="row" id="custom-search-input">
+        <form class="input-group col-sm-6 col-sm-offset-3" ng-submit="search()">
+            <input type="text" class="search-query form-control" placeholder="Search" ng-model="keywords"/>
+            <span class="input-group-btn">
+                <button class="btn btn-primary" ng-click="search()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </form>
+    </div>
+    
+    <div class="row" ng-show="session.loggedIn">
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="col-sm-8 col-sm-offset-2">
+
+            <div class="row">
+                <div class="col-sm-12 text-left">
+                    <legend>Recommended for you</legend>
+                </div>
+            </div>
+
+            <div class="row" style="border-style:solid; border-color: rgb(163, 159, 153); border-radius: 5px; margin: 10px;">
+
+                    <div class="col-sm-12 text-left">
+                        <h5><b>Categories:</b> <span ng-repeat="cat in auction.categories">/ {{cat.name}} </span></h5>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <img ng-src="{{auction.img}}" style="max-height: 100px;" alt="auction_image" class="img-responsive center-block">
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <h5 style= "font-size: 150%"><a ng-click="auctionPage(auction.id)" href="" style= "color: rgb(251, 130, 13)">{{auction.name}}</a></h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5 text-left">
+                                 <h5><b>Seller:</b> <a href="" ng-click="sellerProfile(auction.seller_id)" style= "color: rgb(251, 130, 13)">{{auction.seller_username}}</a></h5>
+                                <h5><b>Location:</b> {{auction.location}}</h5>
+                            </div>
+                            <div class="col-sm-3 text-left">
+                                <h5><b>Rating:</b> {{auction.rating}}</h5>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <h5 style= "font-size: 120%" ng-hide="auction.buy_price == 0"><b>Buy price:</b> {{auction.buy_price}}$</h5>
+                                <h5 style= "font-size: 120%; opacity: 0.0;" ng-show="auction.buy_price == 0">BP</h5>
+                                <h5 style= "font-size: 120%"><b>Current bid:</b> {{auction.currently}}$</h5>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <a ng-click="prev()" style="color: rgb(251, 130, 13); text-decoration: none; cursor:pointer;">
+                        <i class="fa fa-arrow-left  fa-2x"></i>
+                    </a>
+                    <a ng-click="next()" style="color: rgb(251, 130, 13); text-decoration: none; cursor:pointer;">
+                        <i class="fa fa-arrow-right fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
